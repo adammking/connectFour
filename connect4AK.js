@@ -16,7 +16,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   for (let h = 0; h < HEIGHT; h++) {
     board.push([]);
     for (let w = 0; w < WIDTH; w++) {
@@ -28,9 +27,7 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
     let htmlBoard = document.querySelector("#board")
-  // TODO: add comment for this code
   //Creates top row for user to select where piece will be played
   let top = document.createElement("tr");
   top.setAttribute("id", "column-top");
@@ -43,7 +40,6 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  // TODO: add comment for this code
   //creates the HTML tags for the table that represents the gameboard
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
@@ -59,7 +55,6 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
   for (let y = HEIGHT - 1; y >= 0; y--) {
     if (!board[y][x]) {
       return y;
@@ -73,7 +68,6 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
   let divPiece = document.createElement("div");
   let tblePlace = document.getElementById(`${y}-${x}`)
   divPiece.classList.add("piece");
@@ -84,7 +78,6 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
   alert(msg);
 }
 
@@ -101,7 +94,6 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
   board[y][x] = currPlayer;
   placeInTable(y, x);
 
@@ -111,13 +103,11 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame     
   if (board.every( val => val.every(spot => spot))) {
     return endGame("It's a Tie!")
   } 
   
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
   currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
 }
 
@@ -140,9 +130,10 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
-
+  //loops through every cell of JS gameboard
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
+      //checks cells for patterns to determine winner
       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];

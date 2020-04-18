@@ -1,10 +1,6 @@
 /* game board table */
 
-#board {
-  position: static;
-  text-align: center;
-  align-content: center;
-}
+
 
 #board td {
   width: 50px;

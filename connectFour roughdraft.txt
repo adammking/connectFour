@@ -1,0 +1,49 @@
+connectFour roughdraft
+
+HTML
+gameboard - (container for all game slots)
+    -would contain 42divs representing slots for game pieces (7wide by 6deep)
+    -would have some border around them to differentiate 
+    -each space could have a class "played" which means a piece is there
+redPiece - (div for the red player piece)
+    -would have a class that could be added to any slot to display the piece & change to played
+
+bluePiece - (div for the blue player piece)
+    -would have a class that could be added to any slot to display the piece & change to played
+
+startButton - (button to push to start a new game)
+scoreboard - (would keep track of redplayer and blueplayer victories)
+
+Javascript
+
+function gameboard()
+    generate gameboard divs to the dom
+
+function gamepieces()
+    generate red and blue pieces
+
+victory check()
+    -would need to access the gameboard and check for four consecutive colors in any direction(horizontal, vertical, diagonally)
+    -may need seperate functions for each type of win
+
+function tieCheck()
+    -if no unplayed divs left would count game as a tie and reset board
+
+function playPiece()
+    -would need to place piece at the bottom-most position
+
+function playerTurns()
+    -would need to alternate the color of the pieces or switch between red and blue player
+
+function redPlayer()
+    -would keep track of plays by red player
+
+function bluePlayer()
+    -would keep track of plays by blue player
+
+function startButton()
+    -need eventlistener
+    -run gameboard function on click
+
+scoreboard()
+    -will add one to a counter if blue or red player wins

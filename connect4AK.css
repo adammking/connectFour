@@ -32,8 +32,8 @@
 }
 
 .player2{
-    color: red;
-    background-color: red;
+    color: magenta;
+    background-color: magenta;
 }
 /* column-top is table row of clickable areas for each column */
 
@@ -48,4 +48,10 @@
 .title {
   position: relative;
   text-align: center;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+}
+
+body {
+ background-color: black;
 }

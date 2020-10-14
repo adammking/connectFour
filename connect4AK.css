@@ -23,6 +23,8 @@
   width: 80%;
   height: 80%;
   border-radius: 50%;
+  animation-name: drop-animation; 
+  animation-duration: 2s;
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
@@ -32,8 +34,8 @@
 }
 
 .player2{
-    color: magenta;
-    background-color: magenta;
+    color: red;
+    background-color: red;
 }
 /* column-top is table row of clickable areas for each column */
 
@@ -54,4 +56,37 @@
 
 body {
  background-color: black;
+}
+
+.restart-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.restart:hover {
+  background-color: gray; 
+  color: white;
+}
+
+.restart {
+   background-color: black; 
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+
+@keyframes drop-animation {
+  from {
+    transform: translateY(-400px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }

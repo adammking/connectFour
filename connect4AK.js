@@ -28,19 +28,33 @@ function makeBoard() {
 
 function makeHtmlBoard() {
     let htmlBoard = document.querySelector("#board")
+    let emptyTop = makeTopRow() 
+    let filledTop = fillTopRow(emptyTop)
+    htmlBoard.append(filledTop);
+    completeBoard(htmlBoard);
+    restartButton()
+}
+
   //Creates top row for user to select where piece will be played
-  let top = document.createElement("tr");
-  top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
-//creates the cells within the row that user will interact with
-  for (let x = 0; x < WIDTH; x++) {
-    let headCell = document.createElement("td");
-    headCell.setAttribute("id", x);
-    top.append(headCell);
-  }
-  htmlBoard.append(top);
+function makeTopRow() {
+    let top = document.createElement("tr");
+    top.setAttribute("id", "column-top");
+    top.addEventListener("click", handleClick);
+  return top
+}
+
+  //creates the cells within the row that user will interact with
+function fillTopRow(top) {
+    for (let x = 0; x < WIDTH; x++) {
+      let headCell = document.createElement("td");
+      headCell.setAttribute("id", x);
+      top.append(headCell);
+    }
+    return top
+}
 
   //creates the HTML tags for the table that represents the gameboard
+function completeBoard(htmlBoard) {
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
@@ -68,17 +82,41 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  let divPiece = document.createElement("div");
   let tblePlace = document.getElementById(`${y}-${x}`)
-  divPiece.classList.add("piece");
-  divPiece.classList.add(`player${currPlayer}`);
+  let divPiece = createGamePiece()
   tblePlace.append(divPiece);
+}
+
+/**Create's game piece used by player */
+function createGamePiece() {
+    let divPiece = document.createElement("div");
+    divPiece.classList.add("piece");
+    divPiece.classList.add(`player${currPlayer}`);
+    return divPiece
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
-  alert(msg);
+  setTimeout(alert(msg), 3000)
+  let topRow = document.querySelector("#column-top")
+  topRow.removeEventListener("click", handleClick)
+}
+
+/** restartGame: creates new board to start a new game */
+function restartGame() {
+  let board = document.querySelectorAll("tr");
+  console.log(board)
+    for (let itm of board) {
+      itm.remove()
+    }
+    makeHtmlBoard()
+}
+
+/** restartButton: assigns listener to button to restart game */
+function restartButton() {
+  let restart = document.querySelector(".restart")
+  restart.addEventListener("click", restartGame); 
 }
 
 /** handleClick: handle click of column top to play piece */

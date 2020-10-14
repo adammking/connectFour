@@ -98,22 +98,23 @@ function createGamePiece() {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  setTimeout(alert(msg), 3000)
+  alert(msg)
   let topRow = document.querySelector("#column-top")
   topRow.removeEventListener("click", handleClick)
 }
 
-/** restartGame: creates new board to start a new game */
+/** restartGame: creates new board in memory and html to start a new game */
 function restartGame() {
-  let board = document.querySelectorAll("tr");
-  console.log(board)
-    for (let itm of board) {
+  let htmlBoard = document.querySelectorAll("tr");
+    for (let itm of htmlBoard) {
       itm.remove()
     }
+    board = []
+    makeBoard()
     makeHtmlBoard()
 }
 
-/** restartButton: assigns listener to button to restart game */
+/** restartButton: assigns listener to restart game button */
 function restartButton() {
   let restart = document.querySelector(".restart")
   restart.addEventListener("click", restartGame); 
@@ -137,12 +138,12 @@ function handleClick(evt) {
 
   // check for win
   if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
+    return setTimeout(function() {endGame(`Player ${currPlayer} won!`)}, 2000);
   }
 
   // check for tie
   if (board.every( val => val.every(spot => spot))) {
-    return endGame("It's a Tie!")
+    return setTimeout(function() {endGame("It's a Tie!")}, 2000);
   } 
   
   // switch players

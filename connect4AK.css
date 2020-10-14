@@ -84,7 +84,7 @@ body {
 
 @keyframes drop-animation {
   from {
-    transform: translateY(-400px);
+    transform: translateY(-500px);
   }
   to {
     transform: translateY(0px);
